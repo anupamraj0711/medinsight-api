@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI';
+      margin: 0;
+      background: #fafafa;
+    }
+
+    .nav {
+      padding: 15px;
+      background: white;
+      display: flex;
+      gap: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 15px 0;
+      border: 1px solid #ddd;
+    }
+
+    .grid {
+      display: flex;
+      gap: 15px;
+    }
+
+    .box {
+      flex: 1;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      background: black;
+      color: white;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="nav">
+  <b>Dashboard</b>
+  <span>Appointments</span>
+  <span>Medications</span>
+  <span>Reports</span>
+  <span>Profile</span>
+</div>
+
+<div class="container">
+
+  <h2>Welcome back, Anupam</h2>
+
+  <div class="card">
+    ⚠ AI Agent: You have missed medications this week
+  </div>
+
+  <div class="grid">
+    <div class="box">Book Appointment</div>
+    <div class="box">Medications</div>
+    <div class="box">Health Data</div>
+    <div class="box">Alerts</div>
+  </div>
+
+  <div class="card">
+    <h3>Analyze Report</h3>
+
+    <textarea id="input"></textarea>
+    <button onclick="analyze()">Analyze</button>
+
+    <pre id="output"></pre>
+  </div>
+
+</div>
+
+<script>
+async function analyze(){
+  const res = await fetch("http://localhost:5000/analyze",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({report:input.value})
+  });
+
+  const data = await res.json();
+  output.innerText = JSON.stringify(data,null,2);
+}
+</script>
+
+</body>
+</html>

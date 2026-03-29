@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI';
+      background: linear-gradient(to right, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: white;
+      padding: 35px;
+      border-radius: 15px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      margin-bottom: 5px;
+    }
+
+    p {
+      color: gray;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .input-box {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px 0;
+      background: #f9f9f9;
+    }
+
+    .input-box input {
+      border: none;
+      outline: none;
+      width: 100%;
+      padding: 8px;
+      background: transparent;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      margin-top: 10px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      margin-top: 15px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .link {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .link a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <h2>Create Account</h2>
+  <p>Register to access your health dashboard</p>
+
+  <div class="input-box">
+    👤
+    <input id="name" placeholder="Full Name" autocomplete="off">
+  </div>
+
+  <div class="input-box">
+    📧
+    <input id="email" placeholder="Email" autocomplete="off">
+  </div>
+
+  <div class="input-box">
+    🔒
+    <input id="password" type="password" placeholder="Password" autocomplete="new-password">
+  </div>
+
+  <select id="role">
+    <option value="patient">Patient</option>
+    <option value="doctor">Doctor</option>
+  </select>
+
+  <button class="btn" onclick="signup()">Create Account</button>
+
+  <div class="link">
+    Already have an account? <a href="login.html">Login</a>
+  </div>
+
+</div>
+
+<script>
+async function signup() {
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const role = document.getElementById("role").value;
+
+  // 🔥 FRONTEND VALIDATION
+  if (!name || !email || !password) {
+    alert("All fields are required ❌");
+    return;
+  }
+
+  const res = await fetch("http://localhost:5000/signup", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ name, email, password, role })
+  });
+
+  const data = await res.json();
+
+  if (data.message) {
+    alert("Signup successful ✅");
+    window.location.href = "login.html";
+  } else {
+    alert(data.error || "Signup failed ❌");
+  }
+}
+</script>
+
+</body>
+</html>

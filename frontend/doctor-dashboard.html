@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Doctor Dashboard</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI';
+      display: flex;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: #f5f5f5;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      font-size: 18px;
+    }
+
+    .menu {
+      margin-top: 20px;
+    }
+
+    .menu div {
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .menu div:hover {
+      background: #ddd;
+    }
+
+    .main {
+      flex: 1;
+      padding: 20px;
+      background: #fafafa;
+    }
+
+    .cards {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      flex: 1;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .alert-box {
+      margin-top: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      border: 2px solid black;
+    }
+
+    .alert-item {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .badge {
+      float: right;
+      background: black;
+      color: white;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="sidebar">
+  <h2>Doctor Portal</h2>
+
+  <div class="menu">
+    <div>🏠 Dashboard</div>
+    <div>👥 Patient List</div>
+    <div>📅 Calendar</div>
+    <div>📄 Prescriptions</div>
+    <div>🤖 AI Agent Actions</div>
+    <div>⚠️ Urgent Alerts</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <h2>Dashboard</h2>
+  <p>Welcome back, Doctor</p>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Today's Appointments</h3>
+      <h1>12</h1>
+    </div>
+
+    <div class="card">
+      <h3>Active Patients</h3>
+      <h1>156</h1>
+    </div>
+
+    <div class="card">
+      <h3>Urgent Alerts</h3>
+      <h1>3</h1>
+    </div>
+
+    <div class="card">
+      <h3>AI Actions Pending</h3>
+      <h1>5</h1>
+    </div>
+  </div>
+
+  <div class="alert-box">
+    <h3>⚠️ Urgent Alerts</h3>
+
+    <div class="alert-item">
+      Robert Martinez
+      <span class="badge">High</span>
+      <p>BP 180/120 - Immediate attention</p>
+    </div>
+
+    <div class="alert-item">
+      Susan Lee
+      <span class="badge">Medium</span>
+      <p>Missed medications</p>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Patient Portal</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI';
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      width: 380px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .avatar {
+      width: 70px;
+      height: 70px;
+      background: #ccc;
+      border-radius: 50%;
+      margin: auto;
+    }
+
+    h2 {
+      margin-top: 15px;
+    }
+
+    p {
+      color: gray;
+      font-size: 14px;
+    }
+
+    .input-box {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px 0;
+      background: #fafafa;
+    }
+
+    .input-box input {
+      border: none;
+      outline: none;
+      width: 100%;
+      padding: 8px;
+      background: transparent;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      margin-top: 15px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .link {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .divider {
+      margin: 20px 0;
+      border-top: 1px solid #ddd;
+    }
+
+    .google-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background: white;
+      cursor: pointer;
+    }
+
+    a {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="avatar"></div>
+
+  <h2>Patient Portal</h2>
+  <p>Sign in to access your health records</p>
+
+  <!-- EMAIL -->
+  <div class="input-box">
+    📧
+    <input id="email" placeholder="patient@email.com">
+  </div>
+
+  <!-- PASSWORD -->
+  <div class="input-box">
+    🔒
+    <input id="password" type="password" placeholder="********">
+  </div>
+
+  <!-- LOGIN BUTTON -->
+  <button class="btn" onclick="login()">Sign In</button>
+
+  <!-- LINKS -->
+  <div class="link">
+    <p>Forgot password?</p>
+    <p>Don't have an account? <a href="signup.html">Register</a></p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- GOOGLE -->
+  <button class="google-btn">
+    Continue with Google
+  </button>
+
+</div>
+
+<script>
+async function login() {
+  const res = await fetch("http://localhost:5000/login", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value
+    })
+  });
+
+  const data = await res.json();
+
+  if(data.token){
+    localStorage.setItem("token", data.token);
+
+    // 🔥 ROLE BASED REDIRECT
+    if(data.role === "doctor"){
+      window.location.href = "doctor-dashboard.html";
+    } else {
+      window.location.href = "dashboard.html";
+    }
+
+  } else {
+    alert(data.error);
+  }
+}
+</script>
+
+</body>
+</html>
