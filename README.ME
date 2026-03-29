@@ -1,0 +1,142 @@
+# 🏥 Healthcare AI Platform (MedInsight)
+
+A full-stack AI-powered healthcare web application that allows patients and doctors to securely interact, analyze medical reports, and manage health insights.
+
+---
+
+## 🚀 Live Project
+
+🔗 Backend API:  
+https://medinsight-api-xwxa.onrender.com
+
+🔗 Frontend:  
+(Add your Vercel link here)
+
+---
+
+## 📌 Project Overview
+
+This project is designed to simulate a real-world healthcare platform where:
+
+- Patients can register, login, and analyze medical reports
+- Doctors can access dashboards and patient insights
+- AI analyzes medical text and provides structured output
+
+---
+
+## ✨ Features
+
+### 🔐 Authentication
+- Secure Signup & Login
+- Password hashing using bcrypt
+- JWT-based authentication
+- Role-based access (Patient / Doctor)
+
+---
+
+### 👤 Patient Portal
+- Login system
+- Dashboard UI
+- Submit medical reports
+- AI-powered analysis
+- View results:
+  - Summary
+  - Possible Condition
+  - Risk Level
+  - Recommendations
+
+---
+
+### 👨‍⚕️ Doctor Portal
+- Separate login page
+- Doctor dashboard UI
+- View patient alerts (UI ready)
+- AI suggestions (UI ready)
+
+---
+
+### 🤖 AI Integration
+- Uses OpenRouter API
+- Converts raw medical text into structured JSON:
+```json
+{
+  "summary": "",
+  "possible_condition": "",
+  "risk_level": "",
+  "recommendations": []
+}
+## 🚀 Features
+
+### 👤 Authentication System
+- User Signup (Patient / Doctor)
+- Secure Login using JWT
+- Password hashing with bcrypt
+- Role-based redirection
+
+### 🧑‍⚕️ Patient Portal
+- Login dashboard
+- Submit medical reports
+- AI-based analysis
+- View results (summary, condition, risk, recommendations)
+
+### 👨‍⚕️ Doctor Dashboard
+- Doctor login
+- Patient overview (UI ready)
+- Alerts & AI suggestions
+
+### 🤖 AI Integration
+- Uses OpenRouter API (GPT-based model)
+- Converts medical text into structured JSON:
+  - Summary
+  - Possible condition
+  - Risk level
+  - Recommendations
+
+### 🌐 Deployment
+- Backend deployed on **Render**
+- Frontend deployed on **Vercel**
+- Fully working live application
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- HTML
+- CSS
+- JavaScript (Vanilla)
+
+### Backend
+- Node.js
+- Express.js
+
+### Database
+- MongoDB (Atlas)
+- Mongoose ODM
+
+### Authentication
+- JWT (JSON Web Token)
+- bcrypt
+
+### API
+- OpenRouter AI API
+
+📁 Project Structure
+medinsight-api/
+│
+├── frontend/
+│   ├── index.html
+│   ├── login.html
+│   ├── signup.html
+│   ├── dashboard.html
+│   ├── doctor-login.html
+│   ├── doctor-dashboard.html
+│   ├── admin.html
+│
+├── models/
+│   └── User.js
+│
+├── app.js
+├── package.json
+├── .env (not uploaded)
+
