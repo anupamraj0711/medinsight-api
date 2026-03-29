@@ -131,8 +131,8 @@ async function signup() {
     alert("All fields are required ❌");
     return;
   }
-const API = "https://medinsight-api-xwxa.onrender.com";
-  const res = await fetch(`${API}/signup`, {
+
+  const res = await fetch("http://localhost:5000/signup", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({ name, email, password, role })
