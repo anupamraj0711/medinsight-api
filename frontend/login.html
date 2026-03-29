@@ -137,30 +137,39 @@
 </div>
 
 <script>
+const API = "https://medinsight-api-xwxa.onrender.com";
+
 async function login() {
-  const res = await fetch("https://medinsight-api-xwxa.onrender.com", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({
-      email: document.getElementById("email").value,
-      password: document.getElementById("password").value
-    })
-  });
+  try {
+    const res = await fetch(`${API}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
+      })
+    });
 
-  const data = await res.json();
+    const data = await res.json();
 
-  if(data.token){
-    localStorage.setItem("token", data.token);
+    if (data.token) {
+      localStorage.setItem("token", data.token);
 
-    // 🔥 ROLE BASED REDIRECT
-    if(data.role === "doctor"){
-      window.location.href = "doctor-dashboard.html";
+      if (data.role === "doctor") {
+        window.location.href = "doctor-dashboard.html";
+      } else {
+        window.location.href = "dashboard.html";
+      }
+
     } else {
-      window.location.href = "dashboard.html";
+      alert(data.error);
     }
 
-  } else {
-    alert(data.error);
+  } catch (err) {
+    alert("Server error ❌");
+    console.log(err);
   }
 }
 </script>
