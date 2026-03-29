@@ -96,7 +96,7 @@
 
 <script>
 async function analyze(){
-  const res = await fetch("http://localhost:5000/analyze",{
+  const res = await fetch("https://medinsight-api-xwxa.onrender.com/analyze",{
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify({report:input.value})
